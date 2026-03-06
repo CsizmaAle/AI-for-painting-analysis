@@ -1,0 +1,13 @@
+img_path, plaja, campie, deal, munte, lac, rau, padure, mare, oras, sat
+dataset_split/train/campie2.jpg, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0
+dataset_split/train/mare.jpg, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0
+dataset_split/train/munti_modernism.jpg, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0
+dataset_split/train/munti_rau.jpg, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0
+dataset_split/train/munti_rau_padure.jpg, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0
+dataset_split/train/oras_lac.jpeg, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0
+dataset_split/train/padure_lac.jpg, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0
+dataset_split/train/padure_munte_sat.jpg, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1
+dataset_split/train/padure_rau.jpg, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0
+dataset_split/train/rau_deal_munte.jpg, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0
+dataset_split/train/sat_campie_padure.jpeg, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1
+dataset_split/train/sat_padure_deal.jpg, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1

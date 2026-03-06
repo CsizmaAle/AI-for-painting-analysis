@@ -1,0 +1,5 @@
+img_path, plaja, campie, deal, munte, lac, rau, padure, mare, oras, sat
+dataset_split/test/campie.jpg, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0
+dataset_split/test/mare_plaja.jpeg, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0
+dataset_split/test/munti_lac.jpg, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0
+dataset_split/test/munti_lac_padure.jpeg,0, 0, 0, 1, 1, 0, 1, 0, 0, 0
