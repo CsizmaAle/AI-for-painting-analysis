@@ -18,3 +18,7 @@ The code is still a work-in-progress, so expect some rough edges.
  >**Important:**  ML not yet trained properly. Project developed for learning purposes. 
 
 *Sorry for the mess! 😅*
+
+
+## Resources
+- https://www.kaggle.com/datasets/steubk/wikiart?resource=download (dataset - no commercial use)
