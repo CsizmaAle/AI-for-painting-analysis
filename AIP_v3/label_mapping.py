@@ -1,3 +1,13 @@
+PERIOD_TAGS = [
+    "pre_renaissance",    # before 1400
+    "renaissance_era",    # 1400–1600
+    "baroque_era",        # 1600–1700
+    "18th_century",       # 1700–1800
+    "19th_century",       # 1800–1900
+    "early_modern",       # 1900–1960
+    "contemporary",       # 1960+
+]
+
 STYLE_TAGS = [
     "realistic", "impressionist", "abstract", "expressionist",
     "cubist", "baroque", "renaissance", "romantic",
@@ -25,9 +35,9 @@ SUBJECT_TAGS = [
     "animals", "nude", "abstract_nonrepresentational"
 ]
 
-ALL_TAGS = STYLE_TAGS + MOOD_TAGS + ELEMENT_TAGS + TECHNIQUE_TAGS + SUBJECT_TAGS
+ALL_TAGS = PERIOD_TAGS + STYLE_TAGS + MOOD_TAGS + ELEMENT_TAGS + TECHNIQUE_TAGS + SUBJECT_TAGS
 
-# Maps each WikiArt genre folder name to a list of tags from ALL_TAGS
+# Maps each WikiArt genre folder name to descriptive tags (style/mood/element/technique/subject)
 GENRE_TO_TAGS = {
     "Abstract_Expressionism": [
         "abstract",
@@ -219,3 +229,39 @@ GENRE_TO_TAGS = {
         "portrait", "landscape", "everyday_life", "sea_water"
     ],
 }
+
+# Maps each WikiArt genre to its historical period (used alongside year data)
+GENRE_TO_PERIOD = {
+    "Abstract_Expressionism":    "early_modern",
+    "Action_painting":           "early_modern",
+    "Analytical_Cubism":         "early_modern",
+    "Art_Nouveau_Modern":        "19th_century",
+    "Baroque":                   "baroque_era",
+    "Color_Field_Painting":      "contemporary",
+    "Contemporary_Realism":      "contemporary",
+    "Cubism":                    "early_modern",
+    "Early_Renaissance":         "renaissance_era",
+    "Expressionism":             "early_modern",
+    "Fauvism":                   "early_modern",
+    "High_Renaissance":          "renaissance_era",
+    "Impressionism":             "19th_century",
+    "Mannerism_Late_Renaissance": "renaissance_era",
+    "Minimalism":                "contemporary",
+    "Naive_Art_Primitivism":     "early_modern",
+    "New_Realism":               "contemporary",
+    "Northern_Renaissance":      "renaissance_era",
+    "Pointillism":               "19th_century",
+    "Pop_Art":                   "contemporary",
+    "Post_Impressionism":        "19th_century",
+    "Realism":                   "19th_century",
+    "Rococo":                    "18th_century",
+    "Romanticism":               "19th_century",
+    "Symbolism":                 "19th_century",
+    "Synthetic_Cubism":          "early_modern",
+    "Ukiyo_e":                   "18th_century",
+}
+
+assert all(t in ALL_TAGS for tags in GENRE_TO_TAGS.values() for t in tags), \
+    "GENRE_TO_TAGS contains a tag not in ALL_TAGS — check for typos"
+assert all(v in PERIOD_TAGS for v in GENRE_TO_PERIOD.values()), \
+    "GENRE_TO_PERIOD contains a period not in PERIOD_TAGS — check for typos"

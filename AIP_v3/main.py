@@ -1,4 +1,5 @@
 import os
+import random
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -23,6 +24,7 @@ IMG_SIZE     = (224, 224)
 BATCH_SIZE   = 32
 EPOCHS       = 20
 THRESHOLD    = 0.4
+RANDOM_SEED  = 42
 
 
 def prepare_csv():
@@ -55,7 +57,8 @@ def make_dataset(dataframe, tag_cols, shuffle):
 
     def load(path, label):
         img = tf.io.read_file(path)
-        img = tf.image.decode_jpeg(img, channels=3)
+        img = tf.image.decode_image(img, channels=3, expand_animations=False)
+        img.set_shape([None, None, 3])  
         img = tf.image.resize(img, IMG_SIZE)
         img = preprocess_input(img)
         return img, label
@@ -132,9 +135,16 @@ def save_tags(tag_cols):
 
 
 if __name__ == "__main__":
-    # GPU check
+    # Seeds
+    random.seed(RANDOM_SEED)
+    np.random.seed(RANDOM_SEED)
+    tf.random.set_seed(RANDOM_SEED)
+
+    # GPU check + memory growth
     gpus = tf.config.list_physical_devices("GPU")
     print("GPUs detected:", gpus if gpus else "None — training on CPU")
+    for gpu in gpus:
+        tf.config.experimental.set_memory_growth(gpu, True)
 
     # Step 1 — CSV
     prepare_csv()
@@ -178,12 +188,8 @@ if __name__ == "__main__":
     # Step 6 — Evaluate
     plot_history(history)
 
-    y_true, y_pred = [], []
-    for imgs, labels in val_ds:
-        y_pred.append(model.predict(imgs, verbose=0))
-        y_true.append(labels.numpy())
-    y_true = np.concatenate(y_true)
-    y_pred = np.concatenate(y_pred)
+    y_pred = model.predict(val_ds, verbose=1)
+    y_true = np.concatenate([labels.numpy() for _, labels in val_ds])
 
     f1 = f1_score(y_true, y_pred > THRESHOLD, average="macro", zero_division=0)
     print(f"Macro F1 @ {THRESHOLD}: {f1:.4f}")
