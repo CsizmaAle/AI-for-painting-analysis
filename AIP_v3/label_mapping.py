@@ -72,7 +72,7 @@ GENRE_TO_TAGS = {
         "dramatic", "spiritual", "dark",
         "high_contrast", "dark_shadows", "warm_tones", "rich_texture",
         "fine_detail", "layered_depth",
-        "religious_mythological", "portrait", "historical_battle"
+        "religious_mythological", "portrait"
     ],
     "Color_Field_Painting": [
         "abstract", "minimalist",
@@ -86,7 +86,7 @@ GENRE_TO_TAGS = {
         "peaceful", "melancholic",
         "muted_tones", "soft_light",
         "fine_detail", "layered_depth",
-        "portrait", "everyday_life", "landscape"
+        "portrait", "everyday_life"
     ],
     "Cubism": [
         "cubist",
@@ -107,35 +107,35 @@ GENRE_TO_TAGS = {
         "dramatic", "dark", "tense", "melancholic",
         "vivid_colors", "high_contrast",
         "thick_brushwork", "loose_brushwork",
-        "portrait", "landscape", "everyday_life"
+        "portrait", "everyday_life"
     ],
     "Fauvism": [
         "expressionist",
         "joyful", "energetic",
         "vivid_colors", "warm_tones", "high_contrast",
         "thick_brushwork", "loose_brushwork", "flat_color",
-        "landscape", "portrait", "everyday_life"
+        "landscape", "portrait"
     ],
     "High_Renaissance": [
         "renaissance",
         "spiritual", "dramatic", "serene",
         "soft_light", "warm_tones", "rich_texture",
         "fine_detail", "layered_depth",
-        "religious_mythological", "portrait", "historical_battle"
+        "religious_mythological", "portrait"
     ],
     "Impressionism": [
         "impressionist",
         "peaceful", "joyful", "serene",
         "soft_light", "warm_tones", "vivid_colors",
         "loose_brushwork", "thick_brushwork",
-        "landscape", "everyday_life", "portrait", "sea_water"
+        "landscape", "everyday_life"
     ],
     "Mannerism_Late_Renaissance": [
         "renaissance",
         "mysterious", "dramatic", "tense",
         "warm_tones", "high_contrast", "rich_texture",
         "fine_detail", "layered_depth",
-        "religious_mythological", "portrait", "historical_battle"
+        "religious_mythological", "portrait"
     ],
     "Minimalism": [
         "minimalist", "abstract",
@@ -149,7 +149,7 @@ GENRE_TO_TAGS = {
         "joyful", "peaceful",
         "vivid_colors",
         "flat_color", "sketch_like",
-        "landscape", "everyday_life", "animals"
+        "landscape", "everyday_life"
     ],
     "New_Realism": [
         "realistic",
@@ -163,70 +163,70 @@ GENRE_TO_TAGS = {
         "spiritual", "dark", "mysterious",
         "high_contrast", "dark_shadows", "rich_texture", "warm_tones",
         "fine_detail", "layered_depth",
-        "religious_mythological", "portrait", "everyday_life"
+        "religious_mythological", "portrait"
     ],
     "Pointillism": [
         "impressionist",
         "peaceful", "joyful", "serene",
         "vivid_colors", "soft_light", "warm_tones",
         "pointillist_dots",
-        "landscape", "everyday_life", "portrait"
+        "landscape", "everyday_life"
     ],
     "Pop_Art": [
         "pop_art",
         "joyful", "energetic",
         "vivid_colors", "high_contrast", "geometric_shapes",
         "flat_color",
-        "everyday_life", "urban_city", "portrait"
+        "everyday_life", "portrait"
     ],
     "Post_Impressionism": [
         "impressionist", "expressionist",
         "melancholic", "mysterious", "dramatic",
         "vivid_colors", "warm_tones", "rich_texture", "high_contrast",
         "thick_brushwork", "loose_brushwork",
-        "landscape", "portrait", "everyday_life"
+        "landscape", "portrait"
     ],
     "Realism": [
         "realistic",
         "melancholic", "peaceful", "dark",
         "muted_tones", "soft_light", "rich_texture",
         "fine_detail", "layered_depth",
-        "portrait", "everyday_life", "landscape", "historical_battle"
+        "portrait", "everyday_life"
     ],
     "Rococo": [
         "baroque",
         "joyful", "serene", "peaceful",
         "soft_light", "warm_tones", "vivid_colors", "rich_texture",
         "fine_detail", "layered_depth",
-        "portrait", "everyday_life", "nude", "landscape"
+        "portrait", "everyday_life"
     ],
     "Romanticism": [
         "romantic",
         "dramatic", "melancholic", "mysterious",
         "high_contrast", "dark_shadows", "warm_tones", "rich_texture",
         "fine_detail", "loose_brushwork", "layered_depth",
-        "landscape", "historical_battle", "portrait", "sea_water"
+        "landscape", "historical_battle"
     ],
     "Symbolism": [
         "romantic", "expressionist",
         "mysterious", "melancholic", "dark", "spiritual",
         "muted_tones", "dark_shadows", "rich_texture", "cool_tones",
         "fine_detail", "layered_depth",
-        "portrait", "religious_mythological", "landscape"
+        "portrait", "religious_mythological"
     ],
     "Synthetic_Cubism": [
         "cubist", "abstract",
         "energetic", "mysterious",
         "vivid_colors", "geometric_shapes", "high_contrast",
         "flat_color", "sketch_like",
-        "portrait", "still_life", "abstract_nonrepresentational"
+        "portrait", "still_life"
     ],
     "Ukiyo_e": [
         "ukiyo_e",
         "peaceful", "serene", "melancholic",
         "vivid_colors", "muted_tones",
         "fine_detail", "flat_color",
-        "portrait", "landscape", "everyday_life", "sea_water"
+        "portrait", "landscape"
     ],
 }
 

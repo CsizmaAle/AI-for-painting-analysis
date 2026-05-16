@@ -65,8 +65,11 @@ def make_dataset(dataframe, tag_cols, shuffle):
 
     def augment(img, label):
         img = tf.image.random_flip_left_right(img)
-        img = tf.image.random_brightness(img, 0.15)
-        img = tf.image.random_contrast(img, 0.85, 1.15)
+        img = tf.image.random_flip_up_down(img)
+        img = tf.image.random_brightness(img, 0.2)
+        img = tf.image.random_contrast(img, 0.75, 1.25)
+        img = tf.image.random_saturation(img, 0.75, 1.25)
+        img = tf.image.random_hue(img, 0.05)
         return img, label
 
     ds = ds.map(load, num_parallel_calls=tf.data.AUTOTUNE)
@@ -78,15 +81,15 @@ def make_dataset(dataframe, tag_cols, shuffle):
 def build_model(num_tags):
     base = MobileNetV2(input_shape=(*IMG_SIZE, 3), include_top=False, weights="imagenet")
     base.trainable = False
-    for layer in base.layers[-30:]:
+    for layer in base.layers[-10:]:
         layer.trainable = True
 
     inputs  = layers.Input(shape=(*IMG_SIZE, 3))
     x       = base(inputs, training=False)
     x       = layers.GlobalAveragePooling2D()(x)
-    x       = layers.Dropout(0.3)(x)
+    x       = layers.Dropout(0.5)(x)
     x       = layers.Dense(256, activation="relu")(x)
-    x       = layers.Dropout(0.2)(x)
+    x       = layers.Dropout(0.3)(x)
     outputs = layers.Dense(num_tags, activation="sigmoid")(x)
 
     return Model(inputs, outputs)
