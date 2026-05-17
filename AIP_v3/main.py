@@ -87,9 +87,9 @@ def build_model(num_tags):
     inputs  = layers.Input(shape=(*IMG_SIZE, 3))
     x       = base(inputs, training=False)
     x       = layers.GlobalAveragePooling2D()(x)
-    x       = layers.Dropout(0.5)(x)
+    x       = layers.Dropout(0.6)(x)
     x       = layers.Dense(256, activation="relu")(x)
-    x       = layers.Dropout(0.3)(x)
+    x       = layers.Dropout(0.5)(x)
     outputs = layers.Dense(num_tags, activation="sigmoid")(x)
 
     return Model(inputs, outputs)
