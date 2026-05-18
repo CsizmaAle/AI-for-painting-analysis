@@ -16,8 +16,8 @@ from label_mapping import (
 )
 
 CSV_PATH    = "multilabel_dataset.csv"
-ARCHIVE_DIR = "archive"
-INPUT_CSV   = "archive/classes.csv"
+ARCHIVE_DIR = "../archive"
+INPUT_CSV   = "../archive/classes.csv"
 
 TAG_GROUPS = {
     "Period":    PERIOD_TAGS,

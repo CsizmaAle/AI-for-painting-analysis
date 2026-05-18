@@ -1,6 +1,5 @@
 PERIOD_TAGS = [
-    "pre_renaissance",    # before 1400
-    "renaissance_era",    # 1400–1600
+    "renaissance_era",    # 1400–1600  (merged with 'renaissance' style — always co-occurred)
     "baroque_era",        # 1600–1700
     "18th_century",       # 1700–1800
     "19th_century",       # 1800–1900
@@ -10,8 +9,9 @@ PERIOD_TAGS = [
 
 STYLE_TAGS = [
     "realistic", "impressionist", "abstract", "expressionist",
-    "cubist", "baroque", "renaissance", "romantic",
+    "cubist", "baroque", "romantic",
     "minimalist", "pop_art", "ukiyo_e"
+    # 'renaissance' dropped — perfectly correlated with renaissance_era period tag
 ]
 
 MOOD_TAGS = [
@@ -37,11 +37,14 @@ SUBJECT_TAGS = [
 
 ALL_TAGS = PERIOD_TAGS + STYLE_TAGS + MOOD_TAGS + ELEMENT_TAGS + TECHNIQUE_TAGS + SUBJECT_TAGS
 
-# Maps each WikiArt genre folder name to descriptive tags (style/mood/element/technique/subject)
+# Rules applied to every genre entry:
+#   • Max 2 mood tags per genre
+#   • vivid_colors XOR muted_tones — never both
+#   • warm_tones XOR cool_tones — never both
 GENRE_TO_TAGS = {
     "Abstract_Expressionism": [
         "abstract",
-        "energetic", "dramatic", "mysterious",
+        "energetic", "dramatic",
         "vivid_colors", "high_contrast", "rich_texture",
         "thick_brushwork", "loose_brushwork",
         "abstract_nonrepresentational"
@@ -69,7 +72,7 @@ GENRE_TO_TAGS = {
     ],
     "Baroque": [
         "baroque",
-        "dramatic", "spiritual", "dark",
+        "dramatic", "spiritual",
         "high_contrast", "dark_shadows", "warm_tones", "rich_texture",
         "fine_detail", "layered_depth",
         "religious_mythological", "portrait"
@@ -96,15 +99,14 @@ GENRE_TO_TAGS = {
         "portrait", "still_life"
     ],
     "Early_Renaissance": [
-        "renaissance",
-        "spiritual", "peaceful", "serene",
+        "spiritual", "peaceful",
         "soft_light", "warm_tones",
         "fine_detail", "layered_depth",
         "religious_mythological", "portrait"
     ],
     "Expressionism": [
         "expressionist",
-        "dramatic", "dark", "tense", "melancholic",
+        "dramatic", "melancholic",
         "vivid_colors", "high_contrast",
         "thick_brushwork", "loose_brushwork",
         "portrait", "everyday_life"
@@ -117,22 +119,20 @@ GENRE_TO_TAGS = {
         "landscape", "portrait"
     ],
     "High_Renaissance": [
-        "renaissance",
-        "spiritual", "dramatic", "serene",
+        "spiritual", "dramatic",
         "soft_light", "warm_tones", "rich_texture",
         "fine_detail", "layered_depth",
         "religious_mythological", "portrait"
     ],
     "Impressionism": [
         "impressionist",
-        "peaceful", "joyful", "serene",
+        "peaceful", "joyful",
         "soft_light", "warm_tones", "vivid_colors",
         "loose_brushwork", "thick_brushwork",
         "landscape", "everyday_life"
     ],
     "Mannerism_Late_Renaissance": [
-        "renaissance",
-        "mysterious", "dramatic", "tense",
+        "mysterious", "dramatic",
         "warm_tones", "high_contrast", "rich_texture",
         "fine_detail", "layered_depth",
         "religious_mythological", "portrait"
@@ -159,15 +159,14 @@ GENRE_TO_TAGS = {
         "everyday_life", "urban_city"
     ],
     "Northern_Renaissance": [
-        "renaissance",
-        "spiritual", "dark", "mysterious",
+        "spiritual", "mysterious",
         "high_contrast", "dark_shadows", "rich_texture", "warm_tones",
         "fine_detail", "layered_depth",
         "religious_mythological", "portrait"
     ],
     "Pointillism": [
         "impressionist",
-        "peaceful", "joyful", "serene",
+        "serene", "joyful",
         "vivid_colors", "soft_light", "warm_tones",
         "pointillist_dots",
         "landscape", "everyday_life"
@@ -181,35 +180,35 @@ GENRE_TO_TAGS = {
     ],
     "Post_Impressionism": [
         "impressionist", "expressionist",
-        "melancholic", "mysterious", "dramatic",
+        "melancholic", "dramatic",
         "vivid_colors", "warm_tones", "rich_texture", "high_contrast",
         "thick_brushwork", "loose_brushwork",
         "landscape", "portrait"
     ],
     "Realism": [
         "realistic",
-        "melancholic", "peaceful", "dark",
+        "melancholic", "peaceful",
         "muted_tones", "soft_light", "rich_texture",
         "fine_detail", "layered_depth",
         "portrait", "everyday_life"
     ],
     "Rococo": [
         "baroque",
-        "joyful", "serene", "peaceful",
+        "joyful", "serene",
         "soft_light", "warm_tones", "vivid_colors", "rich_texture",
         "fine_detail", "layered_depth",
         "portrait", "everyday_life"
     ],
     "Romanticism": [
         "romantic",
-        "dramatic", "melancholic", "mysterious",
+        "dramatic", "melancholic",
         "high_contrast", "dark_shadows", "warm_tones", "rich_texture",
         "fine_detail", "loose_brushwork", "layered_depth",
         "landscape", "historical_battle"
     ],
     "Symbolism": [
         "romantic", "expressionist",
-        "mysterious", "melancholic", "dark", "spiritual",
+        "mysterious", "melancholic",
         "muted_tones", "dark_shadows", "rich_texture", "cool_tones",
         "fine_detail", "layered_depth",
         "portrait", "religious_mythological"
@@ -223,45 +222,61 @@ GENRE_TO_TAGS = {
     ],
     "Ukiyo_e": [
         "ukiyo_e",
-        "peaceful", "serene", "melancholic",
-        "vivid_colors", "muted_tones",
+        "peaceful", "melancholic",
+        "vivid_colors",                             # woodblock prints are vivid, not muted
         "fine_detail", "flat_color",
         "portrait", "landscape"
     ],
 }
 
-# Maps each WikiArt genre to its historical period (used alongside year data)
+# Maps each WikiArt genre folder name to its historical period
 GENRE_TO_PERIOD = {
-    "Abstract_Expressionism":    "early_modern",
-    "Action_painting":           "early_modern",
-    "Analytical_Cubism":         "early_modern",
-    "Art_Nouveau_Modern":        "19th_century",
-    "Baroque":                   "baroque_era",
-    "Color_Field_Painting":      "contemporary",
-    "Contemporary_Realism":      "contemporary",
-    "Cubism":                    "early_modern",
-    "Early_Renaissance":         "renaissance_era",
-    "Expressionism":             "early_modern",
-    "Fauvism":                   "early_modern",
-    "High_Renaissance":          "renaissance_era",
-    "Impressionism":             "19th_century",
+    "Abstract_Expressionism":     "early_modern",
+    "Action_painting":            "early_modern",
+    "Analytical_Cubism":          "early_modern",
+    "Art_Nouveau_Modern":         "19th_century",
+    "Baroque":                    "baroque_era",
+    "Color_Field_Painting":       "contemporary",
+    "Contemporary_Realism":       "contemporary",
+    "Cubism":                     "early_modern",
+    "Early_Renaissance":          "renaissance_era",
+    "Expressionism":              "early_modern",
+    "Fauvism":                    "early_modern",
+    "High_Renaissance":           "renaissance_era",
+    "Impressionism":              "19th_century",
     "Mannerism_Late_Renaissance": "renaissance_era",
-    "Minimalism":                "contemporary",
-    "Naive_Art_Primitivism":     "early_modern",
-    "New_Realism":               "contemporary",
-    "Northern_Renaissance":      "renaissance_era",
-    "Pointillism":               "19th_century",
-    "Pop_Art":                   "contemporary",
-    "Post_Impressionism":        "19th_century",
-    "Realism":                   "19th_century",
-    "Rococo":                    "18th_century",
-    "Romanticism":               "19th_century",
-    "Symbolism":                 "19th_century",
-    "Synthetic_Cubism":          "early_modern",
-    "Ukiyo_e":                   "18th_century",
+    "Minimalism":                 "contemporary",
+    "Naive_Art_Primitivism":      "early_modern",
+    "New_Realism":                "contemporary",
+    "Northern_Renaissance":       "renaissance_era",
+    "Pointillism":                "19th_century",
+    "Pop_Art":                    "contemporary",
+    "Post_Impressionism":         "19th_century",
+    "Realism":                    "19th_century",
+    "Rococo":                     "18th_century",
+    "Romanticism":                "19th_century",
+    "Symbolism":                  "19th_century",
+    "Synthetic_Cubism":           "early_modern",
+    "Ukiyo_e":                    "18th_century",
 }
 
 assert all(t in ALL_TAGS for tags in GENRE_TO_TAGS.values() for t in tags), \
     "GENRE_TO_TAGS contains a tag not in ALL_TAGS — check for typos"
 assert all(v in PERIOD_TAGS for v in GENRE_TO_PERIOD.values()), \
     "GENRE_TO_PERIOD contains a period not in PERIOD_TAGS — check for typos"
+
+# Enforce mutually exclusive element pairs at import time
+_ME_PAIRS = [
+    ("vivid_colors", "muted_tones"),
+    ("warm_tones",   "cool_tones"),
+]
+for _a, _b in _ME_PAIRS:
+    for _genre, _tags in GENRE_TO_TAGS.items():
+        assert not (_a in _tags and _b in _tags), \
+            f"Mutually exclusive tags '{_a}' and '{_b}' both appear in '{_genre}'"
+
+# Enforce mood cap
+for _genre, _tags in GENRE_TO_TAGS.items():
+    _mood_count = sum(1 for t in _tags if t in MOOD_TAGS)
+    assert _mood_count <= 2, \
+        f"'{_genre}' has {_mood_count} mood tags (max 2): {[t for t in _tags if t in MOOD_TAGS]}"

@@ -12,9 +12,10 @@ import matplotlib.pyplot as plt
 
 from label_mapping import ALL_TAGS
 from generate_multilabel_csv import generate
+from generate_image_labels import main as run_image_labels
 
 # ── Config ───────────────────────────────────────────────────
-ARCHIVE_DIR  = "archive"
+ARCHIVE_DIR  = "../archive"
 CSV_PATH     = "multilabel_dataset.csv"
 MODEL_SAVE   = "art_model.keras"
 TFLITE_SAVE  = "art_model.tflite"
@@ -27,12 +28,28 @@ THRESHOLD    = 0.4
 RANDOM_SEED  = 42
 
 
+def prepare_image_labels():
+    if not os.path.exists("image_labels.csv"):
+        print("image_labels.csv not found — running image labelling (this may take a while)...")
+        run_image_labels()
+    else:
+        print("Found image_labels.csv")
+
+
 def prepare_csv():
     if not os.path.exists(CSV_PATH):
         print("multilabel_dataset.csv not found — generating...")
         generate()
+        return
+    existing_tags = set(pd.read_csv(CSV_PATH, nrows=0).columns) - {"filename", "subset"}
+    expected_tags = set(ALL_TAGS)
+    if existing_tags != expected_tags:
+        added   = expected_tags - existing_tags
+        removed = existing_tags - expected_tags
+        print(f"Schema mismatch — regenerating CSV (added={added or '{}'}, removed={removed or '{}'})")
+        generate()
     else:
-        print(f"Found {CSV_PATH}")
+        print(f"Found {CSV_PATH} — schema OK")
 
 
 def load_data():
@@ -149,7 +166,8 @@ if __name__ == "__main__":
     for gpu in gpus:
         tf.config.experimental.set_memory_growth(gpu, True)
 
-    # Step 1 — CSV
+    # Step 1 — per-image labels → multilabel CSV
+    prepare_image_labels()
     prepare_csv()
 
     # Step 2 — Data

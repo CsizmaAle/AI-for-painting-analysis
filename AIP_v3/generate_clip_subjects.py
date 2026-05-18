@@ -6,8 +6,8 @@ import clip
 from PIL import Image
 from tqdm import tqdm
 
-ARCHIVE_DIR = "archive"
-CLASSES_CSV = "archive/classes.csv"
+ARCHIVE_DIR = "../archive"
+CLASSES_CSV = "../archive/classes.csv"
 OUTPUT_CSV  = "clip_subjects.csv"
 BATCH_SIZE  = 64
 THRESHOLD   = 0.24

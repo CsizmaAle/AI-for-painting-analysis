@@ -1,4 +1,3 @@
-pre_renaissance
 renaissance_era
 baroque_era
 18th_century
@@ -11,7 +10,6 @@ abstract
 expressionist
 cubist
 baroque
-renaissance
 romantic
 minimalist
 pop_art
