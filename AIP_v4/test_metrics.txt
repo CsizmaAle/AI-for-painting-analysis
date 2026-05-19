@@ -1,0 +1,4 @@
+Test Loss:     0.5602
+Test AUC:      0.8502
+Test Accuracy: 0.8053
+Macro F1:      0.5420

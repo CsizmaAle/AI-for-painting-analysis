@@ -28,6 +28,12 @@ def load_dataset():
     df = pd.read_csv(CSV_PATH)
     tag_cols = [c for c in df.columns if c not in ("filename", "subset")]
 
+    mask = df["filename"].apply(lambda fn: os.path.exists(os.path.join(ARCHIVE_DIR, fn)))
+    n_dropped = (~mask).sum()
+    if n_dropped:
+        print(f"Warning: dropping {n_dropped} rows with missing files")
+    df = df[mask].reset_index(drop=True)
+
     train_df = df[df["subset"] == "train"].reset_index(drop=True)
     val_df   = df[df["subset"] == "validation"].reset_index(drop=True)
     test_df  = df[df["subset"] == "test"].reset_index(drop=True)
