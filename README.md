@@ -1,6 +1,6 @@
 # Shape Recognition in Paintings
 
->**Last update:** ~January 2025
+>**Last update:** May 2026
 
 A lightweight AI/ML application that identifies shapes within various paintings, demonstrating basic image processing capabilities.
 
